@@ -8,8 +8,11 @@ const App = ()=> {
 
   const [word, setWord] = useState("")
 
-  const [dataFilter] = useState(["capital","common"])
+  const [dataFilter] = useState(["name"])
 
+
+  
+  
 
 
   useEffect(()=>{
@@ -29,13 +32,13 @@ const App = ()=> {
    //ฟังก์ชันการค้นหาข้อมูลที่สนใจ
   const searchCountries = (countries)=>{
     return countries.filter((item)=>{      
-      return dataFilter.some((filter)=>{        
-        if(item[filter]){
-          return item[filter].toString().toLowerCase().indexOf(word.toLowerCase()) > -1                    
-        }                          
+      return dataFilter.some((filter)=>{                    
+        return item[filter].common.toString().toLowerCase().indexOf(word.toLowerCase())  > -1       
       })
     })
   }
+
+
 
   return (
     <div className = "container">
@@ -44,7 +47,7 @@ const App = ()=> {
         <label htmlFor="search-form">
           <input type="text" 
           className="search-input" 
-          placeholder="ค้นหาข้อมูลประเทศที่ต้องการ (เมืองหลวง, ชื่อประเทศ)" 
+          placeholder="ค้นหาข้อมูลประเทศที่ต้องการ (ชื่อประเทศ)" 
           value={word}
           onChange={(e)=>setWord(e.target.value)}
           />
